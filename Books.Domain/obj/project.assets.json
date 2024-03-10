@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Books.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Books.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Books.Application.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Books.Application/1.0.0": {
+      "type": "project",
+      "path": "../Books.Application/Books.Application.csproj",
+      "msbuildProject": "../Books.Application/Books.Application.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Books.Application >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\gilso\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\gilso\\OneDrive\\Área de Trabalho\\books-api\\Books.Application\\Books.Application.csproj": {
+              "projectPath": "C:\\Users\\gilso\\OneDrive\\Área de Trabalho\\books-api\\Books.Application\\Books.Application.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
