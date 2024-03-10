@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "acd3TMQUjduXuJguCtMrmKHJJUvqQCGTpKRNHa/bjN9aGkMxlZCCnfTZHGmc2gLYQAOIV0JP43kjxXkq3xsAGQ==",
+  "dgSpecHash": "e6Tfo0h7/xVLXijK/xMhE6aS57qCYSpSzMUCTqwdaAGwlWfMKj8hY3rJJVqsfMbgF54EHwJuP5SWyifzjAGkJA==",
   "success": true,
   "projectFilePath": "C:\\Users\\gilso\\OneDrive\\Área de Trabalho\\books-api\\Books.Infrastructure\\Books.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gilso\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\gilso\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -66,16 +66,5 @@
     "C:\\Users\\gilso\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Versão detectada do pacote fora da restrição de dependência: AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 requer AutoMapper (= 12.0.1), mas a versão AutoMapper 13.0.1 foi resolvida.",
-      "libraryId": "AutoMapper",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

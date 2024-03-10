@@ -1,5 +1,6 @@
 using System.Reflection;
 using Books.Infrastructure.Contexts;
+using Books.Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
@@ -28,8 +29,7 @@ namespace HealthSystem.Web
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            services.AddAutoMapper(cfg => cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies()));
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(options =>

@@ -5,6 +5,11 @@
 
 # dotenv files
 .env
+/Books.Web/appsettings.json
+/Books.Web/appsettings.Development.json
+
+/bin/
+/obj/
 
 # User-specific files
 *.rsuser
@@ -357,6 +362,7 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
+*.objlog
 
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
@@ -469,6 +475,7 @@ ehthumbs_vista.db
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+$RECYCLE.OBJ/
 
 # Windows Installer files
 *.cab

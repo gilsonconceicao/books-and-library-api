@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "GZSwToxiLkaItVKjEmZkydMh3Q/h3eMm+hN69aeUnZEIiBuBHJqvbFcCxp+xr9yNmfaktV2KEII/FFjPtkJOdQ==",
-  "success": true,
+  "dgSpecHash": "evSLCIILwDvPjnyumLpmy/fCQIrJcyPq1apMP0uUjb1ilpRCmkPAa9/xuxz8yVu63M20OVXFQDRlnmfLiUIoPQ==",
+  "success": false,
   "projectFilePath": "C:\\Users\\gilso\\OneDrive\\Área de Trabalho\\books-api\\Books.Web\\Books.Web.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gilso\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\gilso\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
@@ -29,7 +29,7 @@
     "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.0-preview.1.24080.9\\microsoft.extensions.caching.abstractions.9.0.0-preview.1.24080.9.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.0-preview.1.24080.9\\microsoft.extensions.caching.memory.9.0.0-preview.1.24080.9.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0-preview.1.24080.9\\microsoft.extensions.configuration.abstractions.9.0.0-preview.1.24080.9.nupkg.sha512",
-    "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.0-preview.1.24080.9\\microsoft.extensions.dependencyinjection.9.0.0-preview.1.24080.9.nupkg.sha512",
+    "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0-preview.1.24080.9\\microsoft.extensions.dependencyinjection.abstractions.9.0.0-preview.1.24080.9.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.0-preview.1.24080.9\\microsoft.extensions.dependencymodel.9.0.0-preview.1.24080.9.nupkg.sha512",
     "C:\\Users\\gilso\\.nuget\\packages\\microsoft.extensions.logging\\9.0.0-preview.1.24080.9\\microsoft.extensions.logging.9.0.0-preview.1.24080.9.nupkg.sha512",
@@ -81,11 +81,28 @@
   ],
   "logs": [
     {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 requires AutoMapper (= 12.0.1) but version AutoMapper 13.0.1 was resolved.",
-      "libraryId": "AutoMapper",
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.DependencyInjection from 9.0.0-preview.1.24080.9 to 8.0.0. Reference the package directly from the project to select a different version. \r\n Books.Web -> Microsoft.EntityFrameworkCore.Proxies 9.0.0-preview.1.24081.2 -> Microsoft.EntityFrameworkCore 9.0.0-preview.1.24081.2 -> Microsoft.Extensions.Logging 9.0.0-preview.1.24080.9 -> Microsoft.Extensions.DependencyInjection (>= 9.0.0-preview.1.24080.9) \r\n Books.Web -> Microsoft.Extensions.DependencyInjection (>= 8.0.0)",
+      "libraryId": "Microsoft.Extensions.DependencyInjection",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.DependencyInjection from 9.0.0-preview.1.24080.9 to 8.0.0. Reference the package directly from the project to select a different version. \r\n Books.Web -> Books.Infrastructure -> Microsoft.EntityFrameworkCore 9.0.0-preview.1.24081.2 -> Microsoft.Extensions.Logging 9.0.0-preview.1.24080.9 -> Microsoft.Extensions.DependencyInjection (>= 9.0.0-preview.1.24080.9) \r\n Books.Web -> Microsoft.Extensions.DependencyInjection (>= 8.0.0)",
+      "libraryId": "Microsoft.Extensions.DependencyInjection",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.DependencyInjection from 9.0.0-preview.1.24080.9 to 8.0.0. Reference the package directly from the project to select a different version. \r\n Books.Web -> Microsoft.EntityFrameworkCore.Design 9.0.0-preview.1.24081.2 -> Microsoft.EntityFrameworkCore.Relational 9.0.0-preview.1.24081.2 -> Microsoft.EntityFrameworkCore 9.0.0-preview.1.24081.2 -> Microsoft.Extensions.Logging 9.0.0-preview.1.24080.9 -> Microsoft.Extensions.DependencyInjection (>= 9.0.0-preview.1.24080.9) \r\n Books.Web -> Microsoft.Extensions.DependencyInjection (>= 8.0.0)",
+      "libraryId": "Microsoft.Extensions.DependencyInjection",
       "targetGraphs": [
         "net8.0"
       ]
