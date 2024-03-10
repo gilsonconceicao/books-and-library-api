@@ -1,6 +1,19 @@
-namespace Books.Application.Commands; 
+using Books.Application.DTOs;
+using MediatR;
 
-class CreateBookCommand
+namespace Books.Application.Commands;
+
+public class CreateBookCommand : IRequest<BookCreateModel>
 {
-    
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public CreateBookCommand(
+        string name, 
+        string description
+    )
+    {
+        Name = name;
+        Description = description;
+    }
 }

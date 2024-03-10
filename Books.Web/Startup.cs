@@ -1,6 +1,9 @@
 using System.Reflection;
+using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
 using Books.Infrastructure.Mappers;
+using Books.Infrastructure.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
@@ -19,15 +22,21 @@ namespace HealthSystem.Web
         {
             string connectionString = _configuration.GetConnectionString("ConnectionStringDatabase")!;
 
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
             services.AddDbContext<DbContextPostgres>((options) =>
             {
                 options.UseLazyLoadingProxies().UseNpgsql(connectionString);
             });
 
+            services.AddScoped<IBookRepository, BookRepository>();
+
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+
+
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
