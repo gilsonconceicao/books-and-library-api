@@ -1,9 +1,9 @@
 using System.Reflection;
 using Books.Application.Commands;
 using Books.Application.DTOs;
+using Books.Application.Exceptions;
 using Books.Application.Handlers;
 using Books.Application.Queries;
-using Books.Application.Validations;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
 using Books.Infrastructure.Handlers;
@@ -39,6 +39,7 @@ namespace HealthSystem.Web
 
             services.AddTransient<IRequestHandler<CreateBookCommand, BookCreateModel>, CreateBookHandler>();
             services.AddTransient<IRequestHandler<UpdateBookCommand, Guid>, UpdateBookHandler>();
+            services.AddTransient<IRequestHandler<DeleteBookCommand, Guid>, DeleteBookHandler>();
             services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
 
             services.AddControllers().AddNewtonsoftJson(options =>

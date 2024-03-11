@@ -26,6 +26,12 @@ public class BookRepository : IBookRepository
         await _dbContext.SaveChangesAsync(); 
     }
 
+    public async Task Delete(Book model)
+    {
+        _dbContext.Books.Remove(model);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public Task<Book> GetBookByIdAsync(Guid id)
     {
         return _dbContext.Books.FirstOrDefaultAsync(item => item.Id == id); 

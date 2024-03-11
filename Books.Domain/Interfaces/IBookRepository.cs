@@ -9,5 +9,6 @@ namespace Books.Domain.Interfaces
         public Task UpdateAsync(BookUpdateModel model, Book currentModel);
         public Task<List<BookReadModel>> GetBookListAsync();
         public Task<Book> GetBookByIdAsync(Guid id);
+        public Task Delete(Book Model);
     }
 }

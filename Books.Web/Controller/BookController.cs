@@ -44,5 +44,11 @@ namespace Books.Web.Controller
 
             return model;
         }
+
+        [HttpDelete("{Id}")]
+        public async Task DeleteBookByIdAsync(Guid Id)
+        {
+            await _mediator.Send(new DeleteBookCommand(Id));
+        }
     }
 }
