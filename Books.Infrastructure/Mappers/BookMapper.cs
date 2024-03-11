@@ -9,5 +9,6 @@ class BookMapper : Profile
     public BookMapper()
     {
         CreateMap<BookCreateModel, Book>();
+        CreateMap<Book, BookReadModel>().ReverseMap();
     }
 }
