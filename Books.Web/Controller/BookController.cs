@@ -27,9 +27,19 @@ namespace Books.Web.Controller
         [HttpPost]
         public async Task<BookCreateModel> CreateBookAsync(BookCreateModel book)
         {
-            var model = await _mediator.Send(new CreateBookCommand(
+            return await _mediator.Send(new CreateBookCommand(
                 book.Name,
                 book.Description
+            ));
+        }
+        
+        [HttpPut("{Id}")]
+        public async Task<BookUpdateModel> UpdateBookAsync(Guid Id, BookUpdateModel model)
+        {
+            await _mediator.Send(new UpdateBookCommand(
+                Id,
+                model.Name, 
+                model.Description
             ));
 
             return model;

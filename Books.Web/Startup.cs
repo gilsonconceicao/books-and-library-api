@@ -3,6 +3,7 @@ using Books.Application.Commands;
 using Books.Application.DTOs;
 using Books.Application.Handlers;
 using Books.Application.Queries;
+using Books.Application.Validations;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
 using Books.Infrastructure.Handlers;
@@ -37,7 +38,8 @@ namespace HealthSystem.Web
             services.AddScoped<IBookRepository, BookRepository>();
 
             services.AddTransient<IRequestHandler<CreateBookCommand, BookCreateModel>, CreateBookHandler>();
-        services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
+            services.AddTransient<IRequestHandler<UpdateBookCommand, Guid>, UpdateBookHandler>();
+            services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
@@ -83,6 +85,19 @@ namespace HealthSystem.Web
                 opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de saúde V1");
             });
 
+            app.Use(async (context, next) =>
+            {
+                try
+                {
+                    await next();
+                }
+                catch (NotFoundException ex)
+                {
+                    context.Response.StatusCode = 404;
+                    context.Response.ContentType = "text/plain";
+                    await context.Response.WriteAsync(ex.Message);
+                }
+            });
 
             app.UseCors(x => x
                 .AllowAnyOrigin()

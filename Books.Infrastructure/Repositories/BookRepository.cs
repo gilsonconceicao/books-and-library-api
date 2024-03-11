@@ -6,7 +6,7 @@ using Books.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books.Infrastructure.Repositories;
-
+#nullable disable
 public class BookRepository : IBookRepository
 {
     private readonly DbContextPostgres _dbContext; 
@@ -26,9 +26,23 @@ public class BookRepository : IBookRepository
         await _dbContext.SaveChangesAsync(); 
     }
 
+    public Task<Book> GetBookByIdAsync(Guid id)
+    {
+        return _dbContext.Books.FirstOrDefaultAsync(item => item.Id == id); 
+    }
+
     public async Task<List<BookReadModel>> GetBookListAsync()
     {
         var books = _mapper.Map<List<BookReadModel>>(await _dbContext.Books.ToListAsync()); 
         return books; 
+    }
+
+    public async Task UpdateAsync(BookUpdateModel model, Book currentModel)
+    {
+        currentModel.Description = model.Description; 
+        currentModel.Name = model.Name; 
+        
+        _dbContext.Books.Update(currentModel);
+        await _dbContext.SaveChangesAsync(); 
     }
 }
