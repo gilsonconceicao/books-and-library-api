@@ -41,6 +41,7 @@ namespace HealthSystem.Web
             services.AddTransient<IRequestHandler<UpdateBookCommand, Guid>, UpdateBookHandler>();
             services.AddTransient<IRequestHandler<DeleteBookCommand, Guid>, DeleteBookHandler>();
             services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
+            services.AddTransient<IRequestHandler<GetBookByIdQuery, BookReadModel>, GetBookByIdQueryHandler>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {

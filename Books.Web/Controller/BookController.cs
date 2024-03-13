@@ -24,6 +24,13 @@ namespace Books.Web.Controller
             return booksList;
         }
 
+        [HttpGet("{Id}")]
+        public async Task<BookReadModel> GetAllBookByIdAsync(Guid Id )
+        {
+            var booksList = await _mediator.Send(new GetBookByIdQuery(Id));
+            return booksList;
+        }
+
         [HttpPost]
         public async Task<BookCreateModel> CreateBookAsync(BookCreateModel book)
         {
