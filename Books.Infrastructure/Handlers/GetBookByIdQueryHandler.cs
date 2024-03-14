@@ -24,7 +24,7 @@ namespace Books.Infrastructure.Handlers
 
             if (entity is null)
             {
-                throw new NotFoundException($"Livro com o ID {command.Id} não encontrado.");
+                throw new NotFoundException($"Livro não encontrado ou não existe.");
             }
             
             return _mapper.Map<BookReadModel>(entity); 

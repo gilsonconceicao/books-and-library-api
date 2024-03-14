@@ -19,7 +19,7 @@ namespace Books.Infrastructure.Handlers
 
             if (currentModel is null)
             {
-                throw new NotFoundException($"Livro com o ID {command.Id} não encontrado.");
+                throw new NotFoundException($"Livro não encontrado ou não existe.");
             }
 
             BookUpdateModel model = new BookUpdateModel()
