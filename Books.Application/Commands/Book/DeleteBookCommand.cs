@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Books.Application.Commands
+namespace Books.Application.Commands.Book
 {
     public class DeleteBookCommand : IRequest<Guid>
     {

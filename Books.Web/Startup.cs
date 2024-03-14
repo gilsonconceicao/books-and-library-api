@@ -1,9 +1,7 @@
 using System.Reflection;
-using Books.Application.Commands;
+using Books.Application.Commands.Book;
+using Books.Application.Queries.Book;
 using Books.Application.DTOs;
-using Books.Application.Exceptions;
-using Books.Application.Handlers;
-using Books.Application.Queries;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
 using Books.Infrastructure.Handlers;
@@ -12,6 +10,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Books.Application.Handlers;
+using Books.Application.Exceptions;
+
 namespace HealthSystem.Web
 {
     public class Startup
@@ -98,6 +99,13 @@ namespace HealthSystem.Web
                     context.Response.StatusCode = 404;
                     context.Response.ContentType = "text/plain";
                     await context.Response.WriteAsync(ex.Message);
+                }
+                catch (BadRequestException ex)
+                {
+                    context.Response.StatusCode = 404;
+                    context.Response.ContentType = "text/plain";
+                    string  responseBody = JsonConvert.SerializeObject(ex.CustomObject);
+                    await context.Response.WriteAsync(responseBody);
                 }
             });
 

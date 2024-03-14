@@ -1,7 +1,6 @@
 using Books.Application.DTOs;
-using Books.Application.Queries;
+using Books.Application.Queries.Book;
 using Books.Domain.Interfaces;
-using Books.Infrastructure.Repositories;
 using MediatR;
 
 namespace Books.Application.Handlers

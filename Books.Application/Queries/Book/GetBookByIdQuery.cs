@@ -1,7 +1,7 @@
 using Books.Application.DTOs;
 using MediatR;
 
-namespace Books.Application.Queries
+namespace Books.Application.Queries.Book
 {
     public class GetBookByIdQuery : IRequest<BookReadModel>
     {
