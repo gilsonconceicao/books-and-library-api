@@ -20,30 +20,32 @@ namespace Books.Web.Controller
         }
 
         [HttpGet]
-        public async Task<List<BookReadModel>> GetAllBooksAsync([FromQuery] string? Name)
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? Name)
         {
             var booksList = await _mediator.Send(new GetBooksListQuery(Name));
-            return booksList;
+            return Ok(booksList);
         }
 
         [HttpGet("{Id}")]
-        public async Task<BookReadModel> GetAllBookByIdAsync(Guid Id )
+        public async Task<IActionResult> GetAllBookByIdAsync(Guid Id )
         {
-            var booksList = await _mediator.Send(new GetBookByIdQuery(Id));
-            return booksList;
+            var model = await _mediator.Send(new GetBookByIdQuery(Id));
+            return Ok(model);
         }
 
         [HttpPost]
-        public async Task<BookCreateModel> CreateBookAsync(BookCreateModel book)
+        public async Task<IActionResult> CreateBookAsync(BookCreateModel book)
         {
-            return await _mediator.Send(new CreateBookCommand(
+            await _mediator.Send(new CreateBookCommand(
                 book.Name,
                 book.Description
             ));
+
+            return Created();
         }
         
         [HttpPut("{Id}")]
-        public async Task<BookUpdateModel> UpdateBookAsync(Guid Id, BookUpdateModel model)
+        public async Task<IActionResult> UpdateBookAsync(Guid Id, BookUpdateModel model)
         {
             await _mediator.Send(new UpdateBookCommand(
                 Id,
@@ -51,13 +53,15 @@ namespace Books.Web.Controller
                 model.Description
             ));
 
-            return model;
+            return NoContent();
         }
 
         [HttpDelete("{Id}")]
-        public async Task DeleteBookByIdAsync(Guid Id)
+        public async Task<IActionResult> DeleteBookByIdAsync(Guid Id)
         {
             await _mediator.Send(new DeleteBookCommand(Id));
+
+            return NoContent();
         }
     }
 }
