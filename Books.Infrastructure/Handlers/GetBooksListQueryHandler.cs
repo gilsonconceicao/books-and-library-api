@@ -13,9 +13,12 @@ namespace Books.Application.Handlers
             _bookRepository = bookRepository; 
         }
 
-        public  async Task<List<BookReadModel>> Handle(GetBooksListQuery request, CancellationToken cancellationToken)
+        public  async Task<List<BookReadModel>> Handle(GetBooksListQuery queryParams, CancellationToken cancellationToken)
         {
-            return await _bookRepository.GetBookListAsync(); 
+            var query = await _bookRepository.GetBookListAsync(
+                Name: queryParams.Name
+            );         
+            return query; 
         }
     }
 }

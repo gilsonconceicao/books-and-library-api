@@ -14,7 +14,7 @@ namespace Books.Application.Exceptions
         public List<ErrorMessage> Details {get; set;}
     } 
 }
-
+#nullable disable
 public class ErrorMessage
 {
     public string Message { get; set; }

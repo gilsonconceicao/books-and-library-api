@@ -20,9 +20,9 @@ namespace Books.Web.Controller
         }
 
         [HttpGet]
-        public async Task<List<BookReadModel>> GetAllBooksAsync()
+        public async Task<List<BookReadModel>> GetAllBooksAsync([FromQuery] string? Name)
         {
-            var booksList = await _mediator.Send(new GetBooksListQuery());
+            var booksList = await _mediator.Send(new GetBooksListQuery(Name));
             return booksList;
         }
 

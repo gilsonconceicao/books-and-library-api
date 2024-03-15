@@ -37,10 +37,16 @@ public class BookRepository : IBookRepository
         return _dbContext.Books.FirstOrDefaultAsync(item => item.Id == id); 
     }
 
-    public async Task<List<BookReadModel>> GetBookListAsync()
+    public async Task<List<BookReadModel>> GetBookListAsync(string Name)
     {
-        var books = _mapper.Map<List<BookReadModel>>(await _dbContext.Books.ToListAsync()); 
-        return books; 
+        List<Book> query = await _dbContext.Books.ToListAsync(); 
+        
+        if (Name is not null)
+        {
+            query =  query.Where(item => item.Name.Contains(Name)).ToList();
+        }
+
+        return _mapper.Map<List<BookReadModel>>(query); 
     }
 
     public async Task UpdateAsync(BookUpdateModel model, Book currentModel)
