@@ -1,5 +1,5 @@
 using AutoMapper;
-using Books.Application.DTOs;
+using Books.Application.DTOs.Book;
 using Books.Domain.Entities;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;

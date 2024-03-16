@@ -1,7 +1,7 @@
 using System.Reflection;
 using Books.Application.Commands.Book;
 using Books.Application.Queries.Book;
-using Books.Application.DTOs;
+using Books.Application.DTOs.Book;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
 using Books.Infrastructure.Handlers;

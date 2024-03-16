@@ -1,6 +1,6 @@
 using Books.Application.Commands;
 using Books.Application.Commands.Book;
-using Books.Application.DTOs;
+using Books.Application.DTOs.Book;
 using Books.Application.Queries;
 using Books.Application.Queries.Book;
 using MediatR;

@@ -1,5 +1,5 @@
 
-using Books.Application.DTOs;
+using Books.Application.DTOs.Book;
 using MediatR;
 
 namespace Books.Application.Queries.Book

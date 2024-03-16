@@ -1,5 +1,5 @@
 using AutoMapper;
-using Books.Application.DTOs;
+using Books.Application.DTOs.Book;
 using Books.Application.Exceptions;
 using Books.Application.Queries.Book;
 using Books.Domain.Interfaces;
