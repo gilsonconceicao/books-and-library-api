@@ -1,4 +1,5 @@
 using Books.Domain.Entities;
+using Books.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -10,9 +11,15 @@ public class DbContextPostgres : DbContext
     {
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    protected override void OnModelCreating ( ModelBuilder options )
     {
+        options.ApplyConfiguration(new BookConfiguration());
+        options.ApplyConfiguration(new AddressConfiguration());
+        options.ApplyConfiguration(new LibraryConfiguration());
+        base.OnModelCreating(options);
     }
 
     public DbSet<Book> Books { get; set; }
+    public DbSet<Library> Librarys { get; set; }
+    public DbSet<Address> Address { get; set; }
 }
