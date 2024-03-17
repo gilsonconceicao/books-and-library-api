@@ -33,13 +33,10 @@ namespace Books.Web.Controller
             return Ok(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateBookAsync(BookCreateModel book)
+        [HttpPost("{LibraryId}")]
+        public async Task<IActionResult> CreateBookAsync(Guid LibraryId, BookCreateModel book)
         {
-            await _mediator.Send(new CreateBookCommand(
-                book.Name,
-                book.Description
-            ));
+            await _mediator.Send(new CreateBookCommand(book, LibraryId));
 
             return Created();
         }

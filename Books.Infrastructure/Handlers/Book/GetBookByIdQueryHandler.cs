@@ -5,7 +5,7 @@ using Books.Application.Queries.Book;
 using Books.Domain.Interfaces;
 using MediatR;
 
-namespace Books.Infrastructure.Handlers
+namespace Books.Infrastructure.Handlers.Book
 {
     public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, BookReadModel>
     {

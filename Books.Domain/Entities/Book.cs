@@ -7,10 +7,9 @@ public class Book : Base
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public int Ibsn { get; set; }
+    public int BookNumber { get; set; }
     public string PublishingCompany { get; set; }
     public string PublishYear { get; set; }
-    public string Gender { get; set; }
     public string Language { get; set; }
     public string PageNumber { get; set; }
     public StatusAvailability StatusAvailability { get; set; }

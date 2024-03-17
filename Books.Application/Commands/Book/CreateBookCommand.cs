@@ -5,15 +5,15 @@ namespace Books.Application.Commands.Book;
 
 public class CreateBookCommand : IRequest<BookCreateModel>
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public BookCreateModel Values { get; set; }
+    public Guid LibraryId { get; set; }
 
     public CreateBookCommand(
-        string name, 
-        string description
+        BookCreateModel model, 
+        Guid LibraryId
     )
     {
-        Name = name;
-        Description = description;
+        this.Values = model;
+        this.LibraryId = LibraryId;
     }
 }

@@ -5,14 +5,14 @@ namespace Books.Application.Enums
     public enum StatusAvailability
     {
         [Description("Disponível")]
-        Available = 1,
+        Available = 0,
         [Description("Reservado")]
-        Reserved =2, 
+        Reserved = 1, 
         [Description(" Em empréstimo")]
-        OnLoan = 3,
+        OnLoan = 2,
         [Description("Perdido")]
-        Lost = 4, 
+        Lost = 3, 
         [Description("Danificado")]
-        Damaged =5
+        Damaged = 4
     }
 }

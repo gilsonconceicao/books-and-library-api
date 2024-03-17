@@ -4,7 +4,7 @@ using Books.Application.Exceptions;
 using Books.Domain.Interfaces;
 using MediatR;
 
-namespace Books.Infrastructure.Handlers
+namespace Books.Infrastructure.Handlers.Book
 {
     public class DeleteBookHandler : IRequestHandler<DeleteBookCommand, Guid>
     {

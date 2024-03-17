@@ -4,9 +4,9 @@ namespace Books.Application.Enums
 {
     public enum Format
     {
-        [Description(" Capa dura")]
+        [Description("Capa dura")]
         Hardcover = 1,
-        [Description(" Capa mole")]
+        [Description("Capa mole")]
         Paperback =2, 
         [Description("Livro eletrônico (e-book)")]
         Ebook = 3,

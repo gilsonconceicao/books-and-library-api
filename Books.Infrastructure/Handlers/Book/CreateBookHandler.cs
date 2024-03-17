@@ -6,7 +6,7 @@ using Books.Domain.Interfaces;
 using FluentValidation.Results;
 using MediatR;
 
-namespace Books.Infrastructure.Handlers;
+namespace Books.Infrastructure.Handlers.Book;
 
 public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateModel>
 {
@@ -18,11 +18,7 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateMo
 
     public async Task<BookCreateModel> Handle(CreateBookCommand command, CancellationToken cancellationToken)
     {
-        var newBook = new BookCreateModel()
-        {
-            Description = command.Description,
-            Name = command.Name
-        };
+        var newBook = command.Values; 
 
         BookModelValidator validator = new BookModelValidator();
         ValidationResult result = validator.Validate(newBook);
