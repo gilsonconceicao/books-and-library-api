@@ -12,6 +12,11 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Books.Application.Handlers;
 using Books.Application.Exceptions;
+using Books.Infrastructure.Handlers.Book;
+using Books.Application.Commands.Library;
+using Books.Application.DTOs.Library;
+using Books.Infrastructure.Handlers.Library;
+using Books.Application.Queries.Library;
 
 namespace HealthSystem.Web
 {
@@ -37,12 +42,18 @@ namespace HealthSystem.Web
 
             // scoped
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ILibraryRepository, LibraryRepository>();
 
+            // book 
             services.AddTransient<IRequestHandler<CreateBookCommand, BookCreateModel>, CreateBookHandler>();
             services.AddTransient<IRequestHandler<UpdateBookCommand, Guid>, UpdateBookHandler>();
             services.AddTransient<IRequestHandler<DeleteBookCommand, Guid>, DeleteBookHandler>();
             services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
             services.AddTransient<IRequestHandler<GetBookByIdQuery, BookReadModel>, GetBookByIdQueryHandler>();
+
+            // library
+            services.AddTransient<IRequestHandler<CreateLibraryCommand, LibraryCreateModel>, CreateLibraryHandler>(); 
+            services.AddTransient<IRequestHandler<GetLibraryListQuery, List<LibraryReadModel>>, GetLibraryListQueryHandler>(); 
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {

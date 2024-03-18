@@ -1,12 +1,13 @@
-using System.Data.Entity;
 using AutoMapper;
 using Books.Application.DTOs.Library;
 using Books.Domain.Entities;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Books.Infrastructure.Repositories
 {
+    #nullable disable
     public class LibraryRepository : ILibraryRepository
     {
         private readonly DbContextPostgres _dbContext;
@@ -33,41 +34,45 @@ namespace Books.Infrastructure.Repositories
 
         public async Task<Library> GetLibraryByIdAsync(Guid id)
         {
-            return await _dbContext.Librarys.FirstOrDefaultAsync(entity => entity.Id == id);  
+            return await _dbContext.Librarys.FirstOrDefaultAsync(entity => entity.Id == id);
         }
 
-        public async Task<List<LibraryReadModel>> GetLibraryListAsync(string Name)
+        public async Task<List<LibraryReadModel>> GetLibraryListAsync()
         {
-            var query = await _dbContext.Librarys.ToListAsync(); 
-
+            List<Library> query = await _dbContext.Librarys.ToListAsync();
             return _mapper.Map<List<LibraryReadModel>>(query);
         }
 
         public async Task UpdateAsync(LibraryUpdateModel model, Library currentModel)
         {
-            currentModel.Name = model.Name; 
-            currentModel.PhoneNumber = model.PhoneNumber; 
-            currentModel.Website = model.Website; 
-            
-            if (model.Catalogs.Count > 0) 
+            currentModel.Name = model.Name;
+            currentModel.PhoneNumber = model.PhoneNumber;
+            currentModel.Website = model.Website;
+
+            if (model.Catalogs.Count > 0)
             {
-                currentModel.Catalogs = model.Catalogs; 
+                currentModel.Catalogs = model.Catalogs;
             }
 
-            if (model.Address is not null) 
+            if (model.Address is null)
             {
-                Address address = currentModel.Address; 
-                AddressCreateModel addressModel = model.Address; 
+                currentModel.Address = currentModel.Address;
+                currentModel.Address.LibraryId = currentModel.Id; 
+            }
+            else
+            {
+                Address address = currentModel.Address;
+                AddressCreateModel addressModel = model.Address;
 
-                address.Number = addressModel.Number; 
-                address.ZipCode = addressModel.ZipCode; 
-                address.Street = addressModel.Street; 
+                address.Number = addressModel.Number;
+                address.ZipCode = addressModel.ZipCode;
+                address.Street = addressModel.Street;
                 address.State = addressModel.State;
                 address.City = addressModel.City;
             }
-            
+
             _dbContext.Update(currentModel);
-            await _dbContext.SaveChangesAsync(); 
+            await _dbContext.SaveChangesAsync();
         }
 
     }

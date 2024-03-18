@@ -7,7 +7,7 @@ namespace Books.Domain.Interfaces
     {
         public Task CreateAsync(LibraryCreateModel model);
         public Task UpdateAsync(LibraryUpdateModel model, Library currentModel);
-        public Task<List<LibraryReadModel>> GetLibraryListAsync(string Name);
+        public Task<List<LibraryReadModel>> GetLibraryListAsync();
         public Task<Library> GetLibraryByIdAsync(Guid id);
         public Task Delete(Library Model);
     }

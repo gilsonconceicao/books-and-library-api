@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Books.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Books.Infrastructure.Migrations
 {
     [DbContext(typeof(DbContextPostgres))]
-    partial class DbContextPostgresModelSnapshot : ModelSnapshot
+    [Migration("20240318020637_change-type-list")]
+    partial class changetypelist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

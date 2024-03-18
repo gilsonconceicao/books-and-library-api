@@ -9,6 +9,6 @@ public class LibraryCreateModel
     public string PhoneNumber { get; set; }
     public string Website { get; set; }
     public string PhotoUrl { get; set; }
-    public ICollection<string> Catalogs { get; set; }
+    public List<string> Catalogs { get; set; }
     public virtual AddressCreateModel Address { get; set; }
 }
