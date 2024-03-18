@@ -53,7 +53,13 @@ public class BookRepository : IBookRepository
     {
         currentModel.Description = model.Description; 
         currentModel.Name = model.Name; 
-        
+        currentModel.PublishingCompany = model.PublishingCompany; 
+        currentModel.PublishYear = model.PublishYear; 
+        currentModel.PageNumber = model.PageNumber; 
+        currentModel.Language = model.Language; 
+        currentModel.StatusAvailability = model.StatusAvailability; 
+        currentModel.Format = model.Format; 
+
         _dbContext.Books.Update(currentModel);
         await _dbContext.SaveChangesAsync(); 
     }

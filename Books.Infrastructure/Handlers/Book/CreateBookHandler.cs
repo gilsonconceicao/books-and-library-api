@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Books.Application.Commands.Book;
 using Books.Application.DTOs.Book;
 using Books.Application.Exceptions;
@@ -11,14 +12,22 @@ namespace Books.Infrastructure.Handlers.Book;
 public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateModel>
 {
     private readonly IBookRepository _bookRepository;
-    public CreateBookHandler(IBookRepository bookRepository)
+    private readonly ILibraryRepository _libraryRepository;
+    public CreateBookHandler(IBookRepository bookRepository, ILibraryRepository libraryRepository)
     {
         _bookRepository = bookRepository;
+        _libraryRepository = libraryRepository;
     }
 
     public async Task<BookCreateModel> Handle(CreateBookCommand command, CancellationToken cancellationToken)
     {
-        var newBook = command.Values; 
+        var newBook = command.Values;
+        var findLibraryById = await _libraryRepository.GetLibraryByIdAsync(command.LibraryId);
+        
+        if (findLibraryById is null)
+        {
+            throw new NotFoundException("Não foi possível encontrar a biblioteca informada"); 
+        }
 
         BookModelValidator validator = new BookModelValidator();
         ValidationResult result = validator.Validate(newBook);
