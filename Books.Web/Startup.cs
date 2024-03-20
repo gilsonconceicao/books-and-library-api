@@ -3,15 +3,15 @@ using Books.Application.Book.Commands;
 using Books.Application.Book.DTOs;
 using Books.Application.Book.Querys;
 using Books.Application.Exceptions;
-using Books.Application.Handlers;
+// using Books.Application.Handlers;
 using Books.Application.Library.Commands;
 using Books.Application.Library.DTOs;
 using Books.Application.Queries.Library;
-using Books.Domain.Interfaces;
+// using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
-using Books.Infrastructure.Handlers.Book;
-using Books.Infrastructure.Handlers.Library;
-using Books.Infrastructure.Repositories;
+// using Books.Infrastructure.Handlers.Book;
+// using Books.Infrastructure.Handlers.Library;
+// using Books.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -40,19 +40,19 @@ namespace HealthSystem.Web
             });
 
             // scoped
-            services.AddScoped<IBookRepository, BookRepository>();
-            services.AddScoped<ILibraryRepository, LibraryRepository>();
+            // services.AddScoped<IBookRepository, BookRepository>();
+            // services.AddScoped<ILibraryRepository, LibraryRepository>();
 
-            // book 
-            services.AddTransient<IRequestHandler<CreateBookCommand, BookCreateModel>, CreateBookHandler>();
-            services.AddTransient<IRequestHandler<UpdateBookCommand, Guid>, UpdateBookHandler>();
-            services.AddTransient<IRequestHandler<DeleteBookCommand, Guid>, DeleteBookHandler>();
-            services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
-            services.AddTransient<IRequestHandler<GetBookByIdQuery, BookReadModel>, GetBookByIdQueryHandler>();
+            // // book 
+            // services.AddTransient<IRequestHandler<CreateBookCommand, BookCreateModel>, CreateBookHandler>();
+            // services.AddTransient<IRequestHandler<UpdateBookCommand, Guid>, UpdateBookHandler>();
+            // services.AddTransient<IRequestHandler<DeleteBookCommand, Guid>, DeleteBookHandler>();
+            // services.AddTransient<IRequestHandler<GetBooksListQuery, List<BookReadModel>>, GetBooksListQueryHandler>();
+            // services.AddTransient<IRequestHandler<GetBookByIdQuery, BookReadModel>, GetBookByIdQueryHandler>();
 
-            // library
-            services.AddTransient<IRequestHandler<CreateLibraryCommand, LibraryCreateModel>, CreateLibraryHandler>(); 
-            services.AddTransient<IRequestHandler<GetLibraryListQuery, List<LibraryReadModel>>, GetLibraryListQueryHandler>(); 
+            // // library
+            // services.AddTransient<IRequestHandler<CreateLibraryCommand, LibraryCreateModel>, CreateLibraryHandler>(); 
+            // services.AddTransient<IRequestHandler<GetLibraryListQuery, List<LibraryReadModel>>, GetLibraryListQueryHandler>(); 
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {

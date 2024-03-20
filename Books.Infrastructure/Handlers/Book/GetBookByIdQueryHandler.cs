@@ -31,3 +31,6 @@ namespace Books.Infrastructure.Handlers.Book
         }
     }
 }
+
+
+//Adicionar o handler junto com o command/query dentro da application, adicionar o mapper diretamente no DTO

@@ -1,4 +1,4 @@
-using Books.Application.Enums;
+using Books.Domain.Enums;
 
 namespace Books.Domain.Entities; 
 

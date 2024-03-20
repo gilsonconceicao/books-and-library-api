@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Books.Application.Enums
+namespace Books.Domain.Enums
 {
     public enum StatusAvailability
     {

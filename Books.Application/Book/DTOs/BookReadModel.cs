@@ -1,4 +1,6 @@
-using Books.Application.Enums;
+
+
+using Books.Domain.Enums;
 
 namespace Books.Application.Book.DTOs;
 #nullable disable
