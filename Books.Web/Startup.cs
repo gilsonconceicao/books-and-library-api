@@ -1,22 +1,21 @@
 using System.Reflection;
-using Books.Application.Commands.Book;
-using Books.Application.Queries.Book;
-using Books.Application.DTOs.Book;
+using Books.Application.Book.Commands;
+using Books.Application.Book.DTOs;
+using Books.Application.Book.Querys;
+using Books.Application.Exceptions;
+using Books.Application.Handlers;
+using Books.Application.Library.Commands;
+using Books.Application.Library.DTOs;
+using Books.Application.Queries.Library;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;
-using Books.Infrastructure.Handlers;
+using Books.Infrastructure.Handlers.Book;
+using Books.Infrastructure.Handlers.Library;
 using Books.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using Books.Application.Handlers;
-using Books.Application.Exceptions;
-using Books.Infrastructure.Handlers.Book;
-using Books.Application.Commands.Library;
-using Books.Application.DTOs.Library;
-using Books.Infrastructure.Handlers.Library;
-using Books.Application.Queries.Library;
 
 namespace HealthSystem.Web
 {

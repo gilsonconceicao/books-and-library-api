@@ -1,7 +1,7 @@
-using Books.Application.DTOs.Library;
+using Books.Application.Library.DTOs;
 using MediatR;
 
-namespace Books.Application.Commands.Library
+namespace Books.Application.Library.Commands
 {
     public class CreateLibraryCommand : IRequest<LibraryCreateModel>
     {

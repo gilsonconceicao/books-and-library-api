@@ -1,5 +1,4 @@
-using Books.Application.Commands;
-using Books.Application.Commands.Book;
+using Books.Application.Book.Commands;
 using Books.Application.Exceptions;
 using Books.Domain.Interfaces;
 using MediatR;

@@ -1,7 +1,7 @@
-using Books.Application.DTOs.Book;
-using Books.Application.Enums;
 
-namespace Books.Application.DTOs.Library;
+using Books.Application.Book.DTOs;
+
+namespace Books.Application.Library.DTOs; 
 #nullable disable
 public class LibraryReadModel
 {

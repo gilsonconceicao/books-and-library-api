@@ -1,11 +1,11 @@
-using Books.Application.Enums;
 
-namespace Books.Application.DTOs.Library;
+using Books.Application.Library.DTOs;
+
+namespace Books.Application.Library.DTOs;
 #nullable disable
-public class LibraryCreateModel
+public class LibraryUpdateModel
 {
     public string Name { get; set; }
-    public string Email { get; set; }
     public string PhoneNumber { get; set; }
     public string Website { get; set; }
     public string PhotoUrl { get; set; }

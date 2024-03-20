@@ -1,4 +1,4 @@
-using Books.Application.DTOs.Library;
+using Books.Application.Library.DTOs;
 using Books.Application.Queries.Library;
 using Books.Domain.Interfaces;
 using Books.Infrastructure.Contexts;

@@ -1,6 +1,6 @@
 using Books.Application.Enums;
 
-namespace Books.Application.DTOs.Book;
+namespace Books.Application.Book.DTOs;
 #nullable disable
 public class BookCreateModel
 {

@@ -1,4 +1,4 @@
-using Books.Application.DTOs.Book;
+using Books.Application.Book.DTOs;
 using FluentValidation;
 
 namespace Books.Application.Validators

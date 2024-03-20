@@ -1,5 +1,5 @@
-using Books.Application.DTOs.Book;
-using Books.Application.Queries.Book;
+using Books.Application.Book.DTOs;
+using Books.Application.Book.Querys;
 using Books.Domain.Interfaces;
 using MediatR;
 

@@ -1,6 +1,5 @@
-using Books.Application.Commands.Library;
-using Books.Application.DTOs.Library;
-using Books.Application.Exceptions;
+using Books.Application.Library.Commands;
+using Books.Application.Library.DTOs;
 using Books.Domain.Interfaces;
 using MediatR;
 

@@ -1,7 +1,7 @@
 using AutoMapper;
-using Books.Application.DTOs.Book;
+using Books.Application.Book.DTOs;
+using Books.Application.Book.Querys;
 using Books.Application.Exceptions;
-using Books.Application.Queries.Book;
 using Books.Domain.Interfaces;
 using MediatR;
 

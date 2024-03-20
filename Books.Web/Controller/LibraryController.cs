@@ -1,5 +1,5 @@
-using Books.Application.Commands.Library;
-using Books.Application.DTOs.Library;
+using Books.Application.Library.Commands;
+using Books.Application.Library.DTOs;
 using Books.Application.Queries.Library;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

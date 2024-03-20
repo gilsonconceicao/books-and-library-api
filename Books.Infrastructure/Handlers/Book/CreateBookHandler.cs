@@ -1,6 +1,6 @@
 using System.ComponentModel;
-using Books.Application.Commands.Book;
-using Books.Application.DTOs.Book;
+using Books.Application.Book.Commands;
+using Books.Application.Book.DTOs;
 using Books.Application.Exceptions;
 using Books.Application.Validators;
 using Books.Domain.Interfaces;

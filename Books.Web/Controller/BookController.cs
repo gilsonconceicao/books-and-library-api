@@ -1,8 +1,6 @@
-using Books.Application.Commands;
-using Books.Application.Commands.Book;
-using Books.Application.DTOs.Book;
-using Books.Application.Queries;
-using Books.Application.Queries.Book;
+using Books.Application.Book.Commands;
+using Books.Application.Book.DTOs;
+using Books.Application.Book.Querys;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

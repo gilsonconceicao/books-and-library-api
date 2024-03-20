@@ -1,4 +1,4 @@
-namespace Books.Application.DTOs.Library
+namespace Books.Application.Library.DTOs
 {
     #nullable disable
     public class AddressReadModel

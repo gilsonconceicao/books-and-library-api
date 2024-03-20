@@ -1,7 +1,7 @@
-using Books.Application.DTOs.Book;
+using Books.Application.Book.DTOs;
 using MediatR;
 
-namespace Books.Application.Commands.Book;
+namespace Books.Application.Book.Commands;
 
 public class CreateBookCommand : IRequest<BookCreateModel>
 {
