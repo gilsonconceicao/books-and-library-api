@@ -1,14 +1,41 @@
+using System.Data.Entity;
+using Books.Application.Exceptions;
+using Books.Infrastructure.Contexts;
 using MediatR;
 
-namespace Books.Application.Book.Commands
-{
-    public class DeleteBookCommand : IRequest<Guid>
-    {
-        public Guid Id { get; set; }
+namespace Books.Application.Book.Commands;
 
-        public DeleteBookCommand(Guid id)
-        {
-            Id = id;
-        }
+public class DeleteBookCommand : IRequest<Guid>
+{
+    public Guid Id { get; set; }
+
+    public DeleteBookCommand(Guid id)
+    {
+        Id = id;
     }
 }
+
+ public class DeleteBookHandler : IRequestHandler<DeleteBookCommand, Guid>
+    {
+        private readonly DbContextPostgres _context;
+
+        public DeleteBookHandler(DbContextPostgres context)
+        {
+            _context = context;
+        }
+
+        public async Task<Guid> Handle(DeleteBookCommand command, CancellationToken cancellationToken)
+        {
+            var entity = await _context.Books
+                .Where(c => c.Id == command.Id)
+                .FirstOrDefaultAsync();
+
+            if (entity is null)
+            {
+                throw new NotFoundException($"Livro não encontrado ou não existe.");
+            }
+
+            _context.Books.Remove(entity);
+            return command.Id;
+        }
+    }

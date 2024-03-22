@@ -24,7 +24,23 @@ public class CreateLibraryHandler : IRequestHandler<CreateLibraryCommand, Librar
     {
         var library = command.values;
 
-        // await _context.CreateAsync(library); 
+        var libraryEntity = new Books.Domain.Entities.Library()
+        {
+            Name = library.Name,
+            Email = library.Email,
+            PhoneNumber = library.PhoneNumber,
+            Website = library.Website,
+            PhotoUrl = library.PhotoUrl,
+            Catalogs = library.Catalogs,
+            Address = {
+                City = library.Address.City, 
+                State = library.Address.State, 
+                Street = library.Address.Street, 
+                ZipCode = library.Address.ZipCode
+            }
+        };
+
+        await _context.Librarys.AddAsync(libraryEntity);
 
         return library;
     }
