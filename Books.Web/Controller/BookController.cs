@@ -1,3 +1,5 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Books.Application.Book.Commands;
 using Books.Application.Book.DTOs;
 using Books.Application.Book.Querys;
@@ -11,24 +13,32 @@ namespace Books.Web.Controller
     public class BookController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public BookController(IMediator mediator)
+        public BookController(IMediator mediator,
+            IMapper mapper)
         {
             this._mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? Name)
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? name)
         {
-            var booksList = await _mediator.Send(new GetBooksListQuery(Name));
-            return Ok(booksList);
+            var booksList = await _mediator.Send(
+                new GetBooksListQuery(name)
+            );
+
+            var result = _mapper.Map<List<GetBookListDto>>(booksList);
+            return Ok(result);
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetAllBookByIdAsync(Guid Id )
+        public async Task<IActionResult> GetAllBookByIdAsync(Guid Id)
         {
             var model = await _mediator.Send(new GetBookByIdQuery(Id));
-            return Ok(model);
+            var result = _mapper.Map<GetBookByIdDto>(model);
+            return Ok(result);
         }
 
         [HttpPost("{LibraryId}")]
@@ -38,13 +48,13 @@ namespace Books.Web.Controller
 
             return Created();
         }
-        
+
         [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateBookAsync(Guid Id, BookUpdateModel model)
         {
             await _mediator.Send(new UpdateBookCommand(
                 Id,
-                model.Name, 
+                model.Name,
                 model.Description
             ));
 

@@ -1,3 +1,5 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Books.Application.Library.Commands;
 using Books.Application.Library.DTOs;
 using Books.Application.Queries.Library;
@@ -11,9 +13,11 @@ namespace Books.Web.Controller
     public class LibraryController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public LibraryController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public LibraryController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -27,8 +31,13 @@ namespace Books.Web.Controller
         [HttpGet]
         public async Task<IActionResult> GetAllLibrary()
         {
-            List<LibraryReadModel> query = await _mediator.Send(new GetLibraryListQuery());
-            return Ok(query);
+            var query = await _mediator.Send(new GetLibraryListQuery());
+            var resultProjected = new[] {query}
+                .AsQueryable()
+                .ProjectTo<GetLibraryListQueryDto>(_mapper.ConfigurationProvider)
+                .First(); 
+
+            return Ok(resultProjected);
         }
     }
 }
