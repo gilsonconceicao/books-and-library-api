@@ -4,7 +4,7 @@ using Books.Domain.Enums;
 
 namespace Books.Application.Book.DTOs;
 #nullable disable
-public class BookReadModel
+public class GetBookListDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -16,5 +16,5 @@ public class BookReadModel
     public StatusAvailability StatusAvailability { get; set; }
     public string StatusAvailabilityDisplay { get; set; }
     public Format Format { get; set; }
-    public Format FormatDisplay { get; set; }
+    public string FormatDisplay { get; set; }
 }

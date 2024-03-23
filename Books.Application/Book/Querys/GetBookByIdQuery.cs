@@ -1,13 +1,11 @@
-using System.Data.Entity;
-using AutoMapper;
-using Books.Application.Book.DTOs;
 using Books.Application.Exceptions;
 using Books.Infrastructure.Contexts;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Books.Application.Book.Querys;
 
-public class GetBookByIdQuery : IRequest<BookReadModel>
+public class GetBookByIdQuery : IRequest<Books.Domain.Entities.Book>
 {
     public Guid Id { get; set; }
 
@@ -17,18 +15,16 @@ public class GetBookByIdQuery : IRequest<BookReadModel>
     }
 }
 
-public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, BookReadModel>
+public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, Books.Domain.Entities.Book>
     {
         private readonly DbContextPostgres _context; 
-        private readonly IMapper _mapper;
 
-        public GetBookByIdQueryHandler(DbContextPostgres context, IMapper mapper)
+        public GetBookByIdQueryHandler(DbContextPostgres context)
         {
             this._context = context;
-            this._mapper = mapper; 
         }
 
-        public async Task<BookReadModel> Handle(GetBookByIdQuery command, CancellationToken cancellationToken)
+        public async Task<Books.Domain.Entities.Book> Handle(GetBookByIdQuery command, CancellationToken cancellationToken)
         {
             var entity = await _context.Books
                 .Where( c => c.Id == command.Id)
@@ -39,6 +35,6 @@ public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, BookRea
                 throw new NotFoundException($"Livro não encontrado ou não existe.");
             }
             
-            return _mapper.Map<BookReadModel>(entity); 
+            return entity; 
         }
     }
