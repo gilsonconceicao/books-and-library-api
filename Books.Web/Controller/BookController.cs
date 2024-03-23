@@ -50,12 +50,11 @@ namespace Books.Web.Controller
         }
 
         [HttpPut("{Id}")]
-        public async Task<IActionResult> UpdateBookAsync(Guid Id, BookUpdateModel model)
+        public async Task<IActionResult> UpdateBookAsync(Guid Id, [FromBody] BookUpdateModel model)
         {
             await _mediator.Send(new UpdateBookCommand(
                 Id,
-                model.Name,
-                model.Description
+                values: model
             ));
 
             return NoContent();

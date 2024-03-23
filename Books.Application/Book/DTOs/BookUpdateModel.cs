@@ -10,6 +10,4 @@ public class BookUpdateModel
     public string PublishYear { get; set; }
     public string Language { get; set; }
     public string PageNumber { get; set; }
-    public StatusAvailability StatusAvailability { get; set; }
-    public Format Format { get; set; }
 }

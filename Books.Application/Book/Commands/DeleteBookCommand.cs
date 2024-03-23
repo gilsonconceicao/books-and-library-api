@@ -1,7 +1,7 @@
-using System.Data.Entity;
 using Books.Application.Exceptions;
 using Books.Infrastructure.Contexts;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Books.Application.Book.Commands;
 
@@ -36,6 +36,7 @@ public class DeleteBookCommand : IRequest<Guid>
             }
 
             _context.Books.Remove(entity);
+            await _context.SaveChangesAsync();
             return command.Id;
         }
     }

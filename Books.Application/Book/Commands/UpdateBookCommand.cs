@@ -1,60 +1,53 @@
-using System.Data.Entity;
 using Books.Application.Book.DTOs;
 using Books.Application.Exceptions;
 using Books.Infrastructure.Contexts;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Books.Application.Book.Commands;
 public class UpdateBookCommand : IRequest<Guid>
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public BookUpdateModel Values;
 
     public UpdateBookCommand(
         Guid id,
-        string name,
-        string description
+        BookUpdateModel values
     )
     {
         Id = id;
-        Name = name;
-        Description = description;
+        Values = values;
     }
 }
 
 public class UpdateBookHandler : IRequestHandler<UpdateBookCommand, Guid>
+{
+    private readonly DbContextPostgres _context;
+    public UpdateBookHandler(DbContextPostgres bookRepository)
     {
-        private readonly DbContextPostgres _context;
-        public UpdateBookHandler(DbContextPostgres bookRepository)
-        {
-            _context = bookRepository;
-        }
-        public async Task<Guid> Handle(UpdateBookCommand command, CancellationToken cancellationToken)
-        {
-            var currentEntity = await _context.Books
-                .Where(c => c.Id == command.Id)
-                .FirstOrDefaultAsync();
-
-            if (currentEntity is null)
-            {
-                throw new NotFoundException($"Livro não encontrado ou não existe.");
-            }
-
-            
-        var newBookToSave = new Domain.Entities.Book()
-        {
-            Name = command.Name,
-            Description = command.Description,
-            // PublishingCompany = command.PublishingCompany,
-            // PublishYear = command.PublishYear,
-            // Language = command.Language,
-            // PageNumber = command.PageNumber,
-            // StatusAvailability = command.StatusAvailability,
-            // Format = command.Format,
-        };
-
-            _context.Books.Update(currentEntity);
-            return command.Id;
-        }
+        _context = bookRepository;
     }
+    public async Task<Guid> Handle(UpdateBookCommand command, CancellationToken cancellationToken)
+    {
+        var values = command.Values;
+        var currentEntity = await _context.Books
+            .Where(c => c.Id == command.Id)
+            .FirstOrDefaultAsync();
+
+        if (currentEntity is null)
+        {
+            throw new NotFoundException($"Livro não encontrado ou não existe.");
+        }
+
+        currentEntity.Name = values.Name; 
+        currentEntity.Description = values.Description; 
+        currentEntity.PublishingCompany = values.PublishingCompany; 
+        currentEntity.PublishYear = values.PublishYear; 
+        currentEntity.Language = values.Language; 
+        currentEntity.PageNumber = values.PageNumber; 
+
+        _context.Books.Update(currentEntity);
+        await _context.SaveChangesAsync();
+        return command.Id;
+    }
+}
