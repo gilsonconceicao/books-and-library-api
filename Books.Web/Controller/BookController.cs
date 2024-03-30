@@ -24,13 +24,14 @@ namespace Books.Web.Controller
 
         [HttpGet]
         public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? Name, 
-            string? Description, string PublishYear)
+            string? Description, string? PublishYear, string? LibraryName)
         {
             var booksList = await _mediator.Send(
                 new GetBooksListQuery(
                     name: Name, 
                     description: Description, 
-                    publishYear: PublishYear
+                    publishYear: PublishYear,
+                    libraryName: LibraryName
                 )
             );
 

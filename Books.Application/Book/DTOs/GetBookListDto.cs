@@ -17,4 +17,5 @@ public class GetBookListDto
     public string StatusAvailabilityDisplay { get; set; }
     public Format Format { get; set; }
     public string FormatDisplay { get; set; }
+    public object Library { get; set; }
 }
