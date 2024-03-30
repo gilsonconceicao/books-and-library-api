@@ -23,10 +23,15 @@ namespace Books.Web.Controller
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? name)
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? Name, 
+            string? Description, string PublishYear)
         {
             var booksList = await _mediator.Send(
-                new GetBooksListQuery(name)
+                new GetBooksListQuery(
+                    name: Name, 
+                    description: Description, 
+                    publishYear: PublishYear
+                )
             );
 
             var result = _mapper.Map<List<GetBookListDto>>(booksList);
