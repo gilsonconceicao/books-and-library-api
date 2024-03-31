@@ -32,12 +32,8 @@ namespace Books.Web.Controller
         public async Task<IActionResult> GetAllLibrary()
         {
             var query = await _mediator.Send(new GetLibraryListQuery());
-            var resultProjected = new[] {query}
-                .AsQueryable()
-                .ProjectTo<GetLibraryListQueryDto>(_mapper.ConfigurationProvider)
-                .First(); 
-
-            return Ok(resultProjected);
+            var listMapped = _mapper.Map<List<GetLibraryListQueryDto>>(query);
+            return Ok(listMapped);
         }
     }
 }

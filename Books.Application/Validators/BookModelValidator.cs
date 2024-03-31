@@ -13,7 +13,7 @@ namespace Books.Application.Validators
                 .WithMessage("Por favor, forneça uma descrição válida");
 
             RuleFor(attribute => attribute.Description)
-                .Length(5, 200).WithMessage("Descrição precisa estar entre 5 e 200 caracteres")
+                .Length(5, 800).WithMessage("Descrição precisa estar entre 5 e 800 caracteres")
                 .NotNull().WithMessage("Descrição não pode ser null")
                 .WithMessage("Por favor, forneça uma descrição válida");
         }

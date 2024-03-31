@@ -1,3 +1,4 @@
+using AutoMapper;
 using Books.Application.Library.DTOs;
 using Books.Infrastructure.Contexts;
 using MediatR;
@@ -16,32 +17,21 @@ public class CreateLibraryCommand : IRequest<LibraryCreateModel>
 public class CreateLibraryHandler : IRequestHandler<CreateLibraryCommand, LibraryCreateModel>
 {
     private readonly DbContextPostgres _context;
-    public CreateLibraryHandler(DbContextPostgres context)
+    private readonly IMapper _mapper;
+    public CreateLibraryHandler(DbContextPostgres context,
+        IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
     public async Task<LibraryCreateModel> Handle(CreateLibraryCommand command, CancellationToken cancellationToken)
     {
         var library = command.values;
 
-        var libraryEntity = new Books.Domain.Entities.Library()
-        {
-            Name = library.Name,
-            Email = library.Email,
-            PhoneNumber = library.PhoneNumber,
-            Website = library.Website,
-            PhotoUrl = library.PhotoUrl,
-            Catalogs = library.Catalogs,
-            Address = {
-                City = library.Address.City, 
-                State = library.Address.State, 
-                Street = library.Address.Street, 
-                ZipCode = library.Address.ZipCode
-            }
-        };
+        var newLibrary = _mapper.Map<Books.Domain.Entities.Library>(library); 
 
-        await _context.Librarys.AddAsync(libraryEntity);
-
+        await _context.Librarys.AddAsync(newLibrary);
+        await _context.SaveChangesAsync();
         return library;
     }
 }

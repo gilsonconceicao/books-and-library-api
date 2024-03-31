@@ -14,6 +14,10 @@ public class Mappers : Profile
            .ForMember(dest => dest.FormatDisplay, opt => opt.MapFrom(src => EnumServices.GetEnumDescription(src.Format)))
            .ForMember(dest => dest.Library, opt => opt.MapFrom(src => MapCustomLibraryForList(src)));
 
+        CreateMap<Book, BookToLibraryDto>()
+           .ForMember(dest => dest.StatusAvailabilityDisplay, opt => opt.MapFrom(src => EnumServices.GetEnumDescription(src.StatusAvailability)))
+           .ForMember(dest => dest.FormatDisplay, opt => opt.MapFrom(src => EnumServices.GetEnumDescription(src.Format))); 
+           
         CreateMap<Book, GetBookByIdDto>()
            .ForMember(dest => dest.StatusAvailabilityDisplay, opt => opt.MapFrom(src => EnumServices.GetEnumDescription(src.StatusAvailability)))
            .ForMember(dest => dest.FormatDisplay, opt => opt.MapFrom(src => EnumServices.GetEnumDescription(src.Format)))
