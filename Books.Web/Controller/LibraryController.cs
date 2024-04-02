@@ -35,5 +35,12 @@ namespace Books.Web.Controller
             var listMapped = _mapper.Map<List<GetLibraryListQueryDto>>(query);
             return Ok(listMapped);
         }
+        
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(Guid Id)
+        {
+            await _mediator.Send(new DeleteLibraryCommand(Id)); 
+            return NoContent();
+        }
     }
 }

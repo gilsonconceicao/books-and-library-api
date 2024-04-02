@@ -51,6 +51,7 @@ namespace HealthSystem.Web
             // library
             services.AddTransient<IRequestHandler<CreateLibraryCommand, LibraryCreateModel>, CreateLibraryHandler>(); 
             services.AddTransient<IRequestHandler<GetLibraryListQuery, List<Library>>, GetLibraryListQueryHandler>(); 
+            services.AddTransient<IRequestHandler<DeleteLibraryCommand, Guid>, DeleteLibraryCommandHandler>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
@@ -106,7 +107,7 @@ namespace HealthSystem.Web
                 {
                     context.Response.StatusCode = 404;
                     context.Response.ContentType = "text/plain";
-                    await context.Response.WriteAsync(ex.Message);
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(ex.CustomObject));
                 }
                 catch (BadRequestException ex)
                 {

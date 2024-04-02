@@ -1,20 +1,12 @@
 namespace Books.Application.Exceptions
 {
-   
-public class NotFoundException : Exception
-{
-    public NotFoundException()
-    {
-    }
 
-    public NotFoundException(string message)
-        : base(message)
+    public class NotFoundException : Exception
     {
+       public object CustomObject { get; }
+        public NotFoundException(object customObject)
+        {
+            CustomObject = customObject;
+        }
     }
-
-    public NotFoundException(string message, Exception innerException)
-        : base(message, innerException)
-    {
-    }
-}
 }
