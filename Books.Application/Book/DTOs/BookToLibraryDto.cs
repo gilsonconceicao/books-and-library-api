@@ -7,6 +7,7 @@ namespace Books.Application.Book.DTOs;
 public class BookToLibraryDto
 {
     public Guid Id { get; set; }
+    public Guid LibraryId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string PublishingCompany { get; set; }

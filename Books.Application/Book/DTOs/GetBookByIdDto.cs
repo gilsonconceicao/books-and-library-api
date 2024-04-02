@@ -8,6 +8,7 @@ namespace Books.Application.Book.DTOs;
 public class GetBookByIdDto
 {
     public Guid Id { get; set; }
+    public Guid LibraryId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public DateTime CreatedAt { get; set; }
