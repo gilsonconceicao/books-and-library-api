@@ -78,7 +78,8 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateMo
             PageNumber = newBook.PageNumber,
             StatusAvailability = newBook.StatusAvailability,
             Format = newBook.Format,
-            LibraryId = command.LibraryId
+            LibraryId = command.LibraryId, 
+            BookNumber = _context.Books.Count() + 1
         };
 
         await _context.Books.AddAsync(newBookToSave);

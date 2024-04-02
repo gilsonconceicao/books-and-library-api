@@ -25,7 +25,7 @@ namespace Books.Web.Controller
         {
             await _mediator.Send(new CreateLibraryCommand(model));
 
-            return Created(); 
+            return Created();
         }
 
         [HttpGet]
@@ -35,11 +35,19 @@ namespace Books.Web.Controller
             var listMapped = _mapper.Map<List<GetLibraryListQueryDto>>(query);
             return Ok(listMapped);
         }
-        
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Get(Guid Id)
+        {
+            var query = await _mediator.Send(new GetLibraryByIdQuery(Id));
+            var library = _mapper.Map<GetLibraryByIdQueryDto>(query);
+            return Ok(library);
+        }
+
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete(Guid Id)
         {
-            await _mediator.Send(new DeleteLibraryCommand(Id)); 
+            await _mediator.Send(new DeleteLibraryCommand(Id));
             return NoContent();
         }
     }

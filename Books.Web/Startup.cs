@@ -52,6 +52,7 @@ namespace HealthSystem.Web
             services.AddTransient<IRequestHandler<CreateLibraryCommand, LibraryCreateModel>, CreateLibraryHandler>(); 
             services.AddTransient<IRequestHandler<GetLibraryListQuery, List<Library>>, GetLibraryListQueryHandler>(); 
             services.AddTransient<IRequestHandler<DeleteLibraryCommand, Guid>, DeleteLibraryCommandHandler>();
+            services.AddTransient<IRequestHandler<GetLibraryByIdQuery, Books.Domain.Entities.Library>, GetLibraryByIdQueryHandler>();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
