@@ -1,23 +1,15 @@
 using System.Text.Json;
+using Books.Application.Exceptions;
 using Books.Application.Library.DTOs;
-
+#nullable disable
 public class GetZipCodeServices
 {
-    public static async void GetZipCode(string zipCode)
+    public static async Task<object> GetZipCode(string zipCode)
     {
-        try
-        {
-            HttpClient httpClient = new HttpClient();
-            string apiUrl = $"https://viacep.com.br/ws/{zipCode}/json/";
-            Stream response = await httpClient.GetStreamAsync(apiUrl);
-            var repositories = await JsonSerializer.DeserializeAsync<AddressZipCodeModel>(response);
-            var data = repositories;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Message :{0} ", ex.Message);
-
-        }
-
+        HttpClient httpClient = new HttpClient();
+        string apiUrl = $"https://viacep.com.br/ws/{zipCode}/json/";
+        Stream response = await httpClient.GetStreamAsync(apiUrl);
+        var repositories = await JsonSerializer.DeserializeAsync<AddressZipCodeModel>(response);
+        return repositories;
     }
 }
