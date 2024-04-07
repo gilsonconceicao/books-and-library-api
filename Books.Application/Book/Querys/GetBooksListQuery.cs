@@ -1,5 +1,4 @@
 
-using AutoMapper;
 using Books.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -25,12 +24,10 @@ public class GetBooksListQuery : IRequest<List<Books.Domain.Entities.Book>>
 public class GetBooksListQueryHandler : IRequestHandler<GetBooksListQuery, List<Books.Domain.Entities.Book>>
 {
     private readonly DbContextPostgres _context;
-    private readonly IMapper _mapper;
 
-    public GetBooksListQueryHandler(DbContextPostgres context, IMapper mapper)
+    public GetBooksListQueryHandler(DbContextPostgres context)
     {
         _context = context;
-        _mapper = mapper;
     }
 
     public async Task<List<Books.Domain.Entities.Book>> Handle(GetBooksListQuery query, CancellationToken cancellationToken)

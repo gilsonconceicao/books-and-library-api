@@ -1,4 +1,4 @@
-using Books.Application.Exceptions;
+using Books.Domain.Exceptions;
 using Books.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -28,11 +28,13 @@ public class DeleteLibraryCommandHandler : IRequestHandler<DeleteLibraryCommand,
         var findLibrary = await _dbContext
             .Librarys
             .FirstOrDefaultAsync(c => c.Id == request.LibraryId) 
-            ?? throw new NotFoundException(new 
-            {
-                Code = StatusCodes.Status404NotFound, 
-                ErrorMessage = $"Biblioteca não encontrada ou não existe."
-            }); ;
+            ?? throw new CustomException(
+                    StatusCodes.Status404NotFound, 
+                    "Library", 
+                    new 
+                    {
+                        Message = "Biblioteca não encontrada ou não existe"
+                    });
 
         _dbContext.Librarys.Remove(findLibrary); 
         await _dbContext.SaveChangesAsync();

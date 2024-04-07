@@ -1,10 +1,11 @@
 using AutoMapper;
 using Books.Application.Book.DTOs;
-using Books.Application.Exceptions;
+using Books.Domain.Exceptions;
 using Books.Application.Validators;
 using Books.Infrastructure.Contexts;
 using FluentValidation.Results;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books.Application.Book.Commands;
@@ -44,7 +45,7 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateMo
 
         if (findLibraryById is null)
         {
-            throw new NotFoundException("Não foi possível encontrar a biblioteca informada");
+            throw new CustomException(StatusCodes.Status404NotFound, "Book", "Livro não encontrado ou não existe");
         }
 
         BookModelValidator validator = new BookModelValidator();
@@ -52,18 +53,19 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateMo
 
         if (!result.IsValid)
         {
-            var errorsMessage = new List<ErrorMessage>();
+            var errorsMessage = new List<string>();
             foreach (var item in result.Errors)
             {
-                errorsMessage.Add(new ErrorMessage { Message = item.ErrorMessage });
+                errorsMessage.Add(item.ErrorMessage);
             }
-            throw new BadRequestException(
-                "Houve um erro",
-                new CustomException(
-                  code: "INVALID_FIELD",
-                  message: "Não foi possível validar os dados enviados",
-                  details: errorsMessage
-              )
+            throw new CustomException(
+                StatusCodes.Status400BadRequest,
+                "Book",
+                new
+                {
+                    Message = "Não foi possível validar os dados enviados",
+                    Details = errorsMessage
+                }
             );
         }
 
@@ -78,7 +80,7 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreateMo
             PageNumber = newBook.PageNumber,
             StatusAvailability = newBook.StatusAvailability,
             Format = newBook.Format,
-            LibraryId = command.LibraryId, 
+            LibraryId = command.LibraryId,
             BookNumber = _context.Books.Count() + 1
         };
 

@@ -3,9 +3,8 @@ using Books.Application.Library.DTOs;
 using Books.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Books.Domain.Entities;
-using Books.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Books.Domain.Exceptions;
 
 namespace Books.Application.Queries.Library;
 
@@ -31,11 +30,13 @@ public class GetLibraryByIdQueryHandler : IRequestHandler<GetLibraryByIdQuery, B
         var listLibrary = await _context
             .Librarys
             .FirstOrDefaultAsync(c => c.Id == request.LibraryId)
-            ?? throw new NotFoundException(new
-            {
-                Code = StatusCodes.Status404NotFound,
-                ErrorMessage = $"Biblioteca não encontrada ou não existe."
-            });
+            ?? throw new CustomException(
+                    StatusCodes.Status404NotFound,
+                    "Library",
+                    new
+                    {
+                        Message = "Bilbioteca não encontrada ou não existe"
+                    });
 
         return listLibrary;
     }

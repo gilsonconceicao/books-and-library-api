@@ -9,13 +9,11 @@ namespace Books.Application.Validators
         {
             RuleFor(attribute => attribute.Name)
                 .NotNull().WithMessage("Nome precisa ser preenchido")
-                .NotEmpty().WithMessage("Nome não pode ser vazio")
-                .WithMessage("Por favor, forneça uma descrição válida");
+                .NotEmpty().WithMessage("Nome não pode ser vazio");
 
             RuleFor(attribute => attribute.Description)
                 .Length(5, 800).WithMessage("Descrição precisa estar entre 5 e 800 caracteres")
-                .NotNull().WithMessage("Descrição não pode ser null")
-                .WithMessage("Por favor, forneça uma descrição válida");
+                .NotNull().WithMessage("Descrição não pode ser null");
         }
     }
 }

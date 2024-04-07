@@ -20,6 +20,13 @@ namespace Books.Web.Controller
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Adiciona uma nova biblioteca
+        /// </summary>
+        /// <returns>Adiciona biblioteca</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(LibraryCreateModel))]
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] LibraryCreateModel model)
         {
@@ -28,6 +35,13 @@ namespace Books.Web.Controller
             return Created();
         }
 
+        /// <summary>
+        /// Obtem todas as bibliotecas 
+        /// </summary>
+        /// <returns>Lista de bibliotecas</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetLibraryListQueryDto>))]
         [HttpGet]
         public async Task<IActionResult> GetAllLibrary()
         {
@@ -36,6 +50,13 @@ namespace Books.Web.Controller
             return Ok(listMapped);
         }
 
+        /// <summary>
+        /// Obtem uma biblioteca específica por identificador
+        /// </summary>
+        /// <returns>Obtem uma bibliotecas</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetLibraryByIdQueryDto))]
         [HttpGet("{Id}")]
         public async Task<IActionResult> Get(Guid Id)
         {
@@ -44,6 +65,13 @@ namespace Books.Web.Controller
             return Ok(library);
         }
 
+        /// <summary>
+        /// Remove uma biblioteca da base
+        /// </summary>
+        /// <returns>Ação de exclusão</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete(Guid Id)
         {

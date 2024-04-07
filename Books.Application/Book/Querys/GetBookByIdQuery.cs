@@ -1,6 +1,7 @@
-using Books.Application.Exceptions;
+using Books.Domain.Exceptions;
 using Books.Infrastructure.Contexts;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books.Application.Book.Querys;
@@ -32,7 +33,13 @@ public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, Books.D
 
             if (entity is null)
             {
-                throw new NotFoundException($"Livro não encontrado ou não existe.");
+                throw new CustomException(
+                    StatusCodes.Status404NotFound, 
+                    "Book", 
+                    new 
+                    {
+                        Message = "Livo não encontrado ou não existe"
+                    });
             }
             
             return entity; 

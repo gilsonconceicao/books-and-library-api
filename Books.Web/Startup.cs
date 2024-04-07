@@ -2,7 +2,7 @@ using System.Reflection;
 using Books.Application.Book.Commands;
 using Books.Application.Book.DTOs;
 using Books.Application.Book.Querys;
-using Books.Application.Exceptions;
+using Books.Domain.Exceptions;
 using Books.Application.Library.Commands;
 using Books.Application.Library.DTOs;
 using Books.Application.Queries.Library;
@@ -104,18 +104,11 @@ namespace HealthSystem.Web
                 {
                     await next();
                 }
-                catch (NotFoundException ex)
+                catch (CustomException ex)
                 {
-                    context.Response.StatusCode = 404;
+                    context.Response.StatusCode = ex.StatusCode;
                     context.Response.ContentType = "text/plain";
-                    await context.Response.WriteAsync(JsonConvert.SerializeObject(ex.CustomObject));
-                }
-                catch (BadRequestException ex)
-                {
-                    context.Response.StatusCode = 404;
-                    context.Response.ContentType = "text/plain";
-                    string  responseBody = JsonConvert.SerializeObject(ex.CustomObject);
-                    await context.Response.WriteAsync(responseBody);
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(ex.Identifiers));
                 }
             });
 

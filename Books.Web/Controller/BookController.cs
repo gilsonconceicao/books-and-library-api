@@ -22,14 +22,21 @@ namespace Books.Web.Controller
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Obtem todos os livros 
+        /// </summary>
+        /// <returns>List de livros </returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetBookListDto>))]
         [HttpGet]
-        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? Name, 
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] string? Name,
             string? Description, string? PublishYear, string? LibraryName)
         {
             var booksList = await _mediator.Send(
                 new GetBooksListQuery(
-                    name: Name, 
-                    description: Description, 
+                    name: Name,
+                    description: Description,
                     publishYear: PublishYear,
                     libraryName: LibraryName
                 )
@@ -39,6 +46,13 @@ namespace Books.Web.Controller
             return Ok(result);
         }
 
+        /// <summary>
+        /// Obtem um livro específico por identificador
+        /// </summary>
+        /// <returns>Livro</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetBookByIdDto))]
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetAllBookByIdAsync(Guid Id)
         {
@@ -47,6 +61,13 @@ namespace Books.Web.Controller
             return Ok(result);
         }
 
+        /// <summary>
+        /// Adiciona um novo livro 
+        /// </summary>
+        /// <returns>Adiciona livro</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(BookCreateModel))]
         [HttpPost("{LibraryId}")]
         public async Task<IActionResult> CreateBookAsync(Guid LibraryId, BookCreateModel book)
         {
@@ -55,6 +76,13 @@ namespace Books.Web.Controller
             return Created();
         }
 
+        /// <summary>
+        /// Atualiza as informações de um livro existente
+        /// </summary>
+        /// <returns>Atualiza o livro</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(BookUpdateModel))]
         [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateBookAsync(Guid Id, [FromBody] BookUpdateModel model)
         {
@@ -66,6 +94,13 @@ namespace Books.Web.Controller
             return NoContent();
         }
 
+        /// <summary>
+        /// Remove um livro da base 
+        /// </summary>
+        /// <returns>Ação de exclusão</returns>
+        /// <response code="200">200 Sucesso</response>
+        /// <response code="400">400 Erro</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteBookByIdAsync(Guid Id)
         {

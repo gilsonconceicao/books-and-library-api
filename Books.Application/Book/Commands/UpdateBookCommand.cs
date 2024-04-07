@@ -1,7 +1,8 @@
 using Books.Application.Book.DTOs;
-using Books.Application.Exceptions;
+using Books.Domain.Exceptions;
 using Books.Infrastructure.Contexts;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books.Application.Book.Commands;
@@ -36,15 +37,21 @@ public class UpdateBookHandler : IRequestHandler<UpdateBookCommand, Guid>
 
         if (currentEntity is null)
         {
-            throw new NotFoundException($"Livro não encontrado ou não existe.");
+            throw new CustomException(
+                    StatusCodes.Status404NotFound,
+                    "Book",
+                    new
+                    {
+                        Message = "Livo não encontrado ou não existe"
+                    });
         }
 
-        currentEntity.Name = values.Name; 
-        currentEntity.Description = values.Description; 
-        currentEntity.PublishingCompany = values.PublishingCompany; 
-        currentEntity.PublishYear = values.PublishYear; 
-        currentEntity.Language = values.Language; 
-        currentEntity.PageNumber = values.PageNumber; 
+        currentEntity.Name = values.Name;
+        currentEntity.Description = values.Description;
+        currentEntity.PublishingCompany = values.PublishingCompany;
+        currentEntity.PublishYear = values.PublishYear;
+        currentEntity.Language = values.Language;
+        currentEntity.PageNumber = values.PageNumber;
 
         _context.Books.Update(currentEntity);
         await _context.SaveChangesAsync();
