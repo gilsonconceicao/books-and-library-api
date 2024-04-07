@@ -50,11 +50,5 @@ namespace Books.Web.Controller
             await _mediator.Send(new DeleteLibraryCommand(Id));
             return NoContent();
         }
-        [HttpGet("/Get/{ZipCode}")]
-        public async Task<IActionResult> GetZipCode(string ZipCode)
-        {
-            GetZipCodeServices.GetZipCode(ZipCode);
-            return NoContent();
-        }
     }
 }
